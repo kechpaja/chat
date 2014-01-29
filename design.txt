@@ -1,0 +1,18 @@
+We'll make this pretty simple to start. There will be no specific "server" and
+"client" programs --- instead, each instance of the program will function as
+both server and client, and messages will be relayed around the resulting
+graph. That means we need a mechanism for ensuring that the same message is
+not printed twice --- I suspect that we should just add all incoming messages
+to the queue, and keep a history of what has been said (messages will have
+some sort of UID perhaps). Then, we can remove duplicates from the queue
+before they are displayed. 
+
+Or perhaps, instead, we could just refuse duplicates as they come in.
+
+We can use go routines to make this work more smoothly. Create one that simply
+accepts incoming messages, prints them, and forwards the contents along (if
+necessary). 
+
+
+When you get a message, display it to the user. When the user types something
+in, forward it on to anybody who is listening. 
